@@ -1,31 +1,32 @@
+import {useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
+import {editTask} from "../../lib/pocketbase.js";
 
-import {useNavigate} from "react-router-dom";
-import {createTask} from "../../lib/pocketbase.js";
-
-const CreateTask = () => {
+const EditTask = () => {
     const navigate = useNavigate()
     const [title, setTitle] = useState(null);
     const [desc, setDesc] = useState(null);
+    const {id} = useParams()
 
     const handleSubmit = () => {
         if(!title){
             window.alert("Please enter title")
             return
         }
-        createTask(title, desc)
+        editTask(id, title, desc)
         navigate('..')
     }
 
+
     return (
         <>
-            <p>Create task</p>
+            <p>Edit task</p>
             <input type={"text"} placeholder={"title"} required={true} onChange={(e) => setTitle(e.target.value)}/>
             <input type={"text"} placeholder={"desc"} onChange={(e) => setDesc(e.target.value)}/>
 
-            <button onClick={handleSubmit}>add task</button>
+            <button onClick={handleSubmit }>edit task</button>
         </>
     )
 }
 
-export default CreateTask;
+export default EditTask

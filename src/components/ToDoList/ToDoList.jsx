@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import pb, {getTasks} from "../../lib/pocketbase.js";
+import {deleteTask, getTasks} from "../../lib/pocketbase.js";
 import "./ToDoList.css"
+import {Link} from "react-router-dom";
 
 const ToDoList = () => {
     const [tasks, setTasks] = useState([])
@@ -13,12 +14,21 @@ const ToDoList = () => {
             {tasks.map((item) => (
                 <li key={item.id}>
                     <div>
-                        <input type={"checkbox"} name={"completed"}/>
-                        <h4>{item.title}</h4>
+                        <div>
+                            <input type={"checkbox"} name={"completed"}/>
+                            <h4>{item.title}</h4>
+                        </div>
+                        <p>{item.description}</p>
                     </div>
-                    <p>{item.description}</p>
+                    <Link to={`edit/${item.id}?title=${item.title}&description=${item.description}`}>
+                        <button>edit task</button>
+                    </Link>
+                    <button onClick={() => deleteTask(item.id)}>delete task</button>
                 </li>
             ))}
+            <Link to={"create"}>
+                <button>Create</button>
+            </Link>
         </ul>
     )
 }
