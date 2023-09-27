@@ -16,7 +16,7 @@ const ToDoList = () => {
                     <div>
                         <div>
                             <input type={"checkbox"} name={"completed"}/>
-                            <h4>{item.title}</h4>
+                            <p><b>{item.title}</b></p>
                         </div>
                         <p>{item.description}</p>
                     </div>

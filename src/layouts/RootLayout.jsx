@@ -5,7 +5,7 @@ const RootLayout = () => {
         <div>
             <div>
                 <Link to="/">
-                    To-do
+                    <strong>To-Do</strong>
                 </Link>
             </div>
 
