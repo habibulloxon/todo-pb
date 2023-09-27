@@ -1,32 +1,60 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {useState} from "react";
-import {editTask} from "../../lib/pocketbase.js";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getTask, editTask } from "../../lib/pocketbase.js";
 
 const EditTask = () => {
-    const navigate = useNavigate()
-    const [title, setTitle] = useState(null);
-    const [desc, setDesc] = useState(null);
-    const {id} = useParams()
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [title, setTitle] = useState("");
+    const [desc, setDesc] = useState("");
 
-    const handleSubmit = () => {
-        if(!title){
-            window.alert("Please enter title")
-            return
+    useEffect(() => {
+        // Fetch the task details and update the state when the component mounts
+        const fetchTaskDetails = async () => {
+            const task = await getTask(id);
+            setTitle(task.title || "");
+            setDesc(task.description || "");
+        };
+
+        fetchTaskDetails();
+    }, [id]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!title) {
+            window.alert("Please enter title");
+            return;
         }
-        editTask(id, title, desc)
-        navigate('..')
-    }
 
+        editTask(id, title, desc);
+        navigate("..");
+    };
 
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <p>Edit task</p>
-            <input type={"text"} placeholder={"title"} required={true} onChange={(e) => setTitle(e.target.value)}/>
-            <input type={"text"} placeholder={"desc"} onChange={(e) => setDesc(e.target.value)}/>
+            <label>
+                Title:
+                <input
+                    type="text"
+                    placeholder="Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            </label>
+            <label>
+                Description:
+                <input
+                    type="text"
+                    placeholder="Description"
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
+                />
+            </label>
+            <button type="submit">Edit task</button>
+        </form>
+    );
+};
 
-            <button onClick={handleSubmit }>edit task</button>
-        </>
-    )
-}
-
-export default EditTask
+export default EditTask;

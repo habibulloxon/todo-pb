@@ -6,6 +6,12 @@ pb.autoCancellation(false);
 export async function getTasks() {
     return await pb.collection("tasks").getFullList()
 }
+
+// Example implementation in pocketbase.js
+export async function getTask(id) {
+    return await pb.collection("tasks").getOne(id);
+}
+
 export async function createTask(title, description) {
     const data = {title: title, description: description}
     return await pb.collection("tasks").create(data)

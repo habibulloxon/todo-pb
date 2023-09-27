@@ -8,7 +8,6 @@ const RootLayout = () => {
                     <strong>To-Do</strong>
                 </Link>
             </div>
-
             <div>
                 <Outlet />
             </div>
