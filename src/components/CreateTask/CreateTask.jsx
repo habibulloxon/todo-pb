@@ -12,9 +12,6 @@ const CreateTask = () => {
         }
         createTask(title, desc)
 
-        setDesc("")
-        setTitle("")
-
         window.location.reload()
     }
 
