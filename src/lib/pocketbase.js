@@ -34,6 +34,7 @@ export async function deleteTask(id) {
 export async function editTask(id, title, description) {
     const data = {title: title, description: description};
     await pb.collection("tasks").update(id, data)
+    window.location.reload()
 }
 
 
