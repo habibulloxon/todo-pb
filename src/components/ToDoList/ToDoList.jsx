@@ -33,10 +33,12 @@ const TaskItem = ({ id, title, description, onDelete }) => {
                 </div>
                 <p className="m-0">{description}</p>
             </div>
-            <Link to={{ pathname: `edit/${id}`, state: { title, description } }}>
-                <button className="btn btn-primary">Edit Task</button>
-            </Link>
-            <button className="btn btn-danger" onClick={handleDelete}>Delete Task</button>
+            <div className="gap-1">
+                <Link to={{ pathname: `edit/${id}`, state: { title, description } }}>
+                    <button className="btn btn-primary">Edit Task</button>
+                </Link>
+                <button className="btn btn-danger" onClick={handleDelete}>Delete Task</button>
+            </div>
         </li>
     );
 };
