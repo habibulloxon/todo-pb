@@ -1,11 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
-
 const RootLayout = () => {
     return (
-        <div>
+        <div  className="container-sm d-flex flex-column">
             <div>
                 <Link to="/">
-                    <strong>To-Do</strong>
+                    <h2>To-Do</h2>
                 </Link>
             </div>
             <div>

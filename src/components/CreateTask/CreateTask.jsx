@@ -23,7 +23,7 @@ const CreateTask = () => {
             <input type={"text"} placeholder={"title"} required={true} onChange={(e) => setTitle(e.target.value)}/>
             <input type={"text"} placeholder={"desc"} onChange={(e) => setDesc(e.target.value)}/>
 
-            <button onClick={handleSubmit}>add task</button>
+            <button onClick={handleSubmit} className="btn btn-success">add task</button>
         </>
     )
 }

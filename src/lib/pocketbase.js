@@ -17,6 +17,11 @@ export async function createTask(title, description) {
     return await pb.collection("tasks").create(data)
 }
 
+export async function completeTask(id, title, completed) {
+    const data = {title: title, completed: completed}
+    await pb.collection("tasks").update(id, data)
+}
+
 export async function deleteTask(id) {
     let confirm = window.confirm("Are you sure?")
     if(!confirm){

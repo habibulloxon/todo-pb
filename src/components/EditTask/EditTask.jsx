@@ -9,7 +9,6 @@ const EditTask = () => {
     const [desc, setDesc] = useState("");
 
     useEffect(() => {
-        // Fetch the task details and update the state when the component mounts
         const fetchTaskDetails = async () => {
             const task = await getTask(id);
             setTitle(task.title || "");
@@ -52,7 +51,7 @@ const EditTask = () => {
                     onChange={(e) => setDesc(e.target.value)}
                 />
             </label>
-            <button type="submit">Edit task</button>
+            <button type="submit"  className="btn btn-success">Save task</button>
         </form>
     );
 };
