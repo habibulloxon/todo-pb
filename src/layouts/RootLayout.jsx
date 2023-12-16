@@ -4,7 +4,7 @@ const RootLayout = () => {
         <div  className="container-sm d-flex flex-column">
             <div>
                 <Link to="/">
-                    <h2>To-Do</h2>
+                    <h2>To-Do with Pocketbase</h2>
                 </Link>
             </div>
             <div>
